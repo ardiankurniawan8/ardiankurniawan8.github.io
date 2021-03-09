@@ -42,6 +42,11 @@ html {
   overflow: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent !important;  /* Optional: just make scrollbar invisible */
+}
+
 body {
   background-color: #f2f7f9;
   margin: 0;
@@ -519,6 +524,7 @@ input[type="submit"]:focus {
 .animated-sections {
   position: relative;
   height: 100%;
+  padding-bottom: 10px;
   -webkit-perspective: 1500px;
   -moz-perspective: 1500px;
   perspective: 1500px;
