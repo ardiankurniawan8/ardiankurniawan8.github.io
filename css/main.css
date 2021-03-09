@@ -1364,7 +1364,7 @@ textarea.form-control, textarea.form-control:focus {
   list-style: none;
 }
 
-.knowledges li {;
+.knowledges li {
   display: inline-block;
   background-color: #04b4e0;
   border-radius: 3px;
@@ -2783,7 +2783,7 @@ blockquote {
 }
 
 .title-block h2 {
-  font-size: 60px;
+  font-size: 50px;
   line-height: 74px;
   margin: 0;
   text-align: center;
@@ -2890,8 +2890,8 @@ blockquote {
  }
 
  .title-block h2 {
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 30px;
+    line-height: 36px;
     margin: 0 0 10px;
     text-align: center;
   }
