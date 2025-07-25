@@ -55,7 +55,7 @@ function onNavigate(action: string) {
   <div class="container">
     <div class="content-wrapper">
       <div class="text-center">
-        <img class="rounded-circle img-thumbnail b-img" style="height: 20vh;" src="/src/assets/main_photo.webp"
+        <img class="rounded-circle img-thumbnail b-img" style="height: 18vh;" src="/src/assets/main_photo.webp"
           alt="Image 2" />
         <h2 class="mt-3">Ardian <br> Kurniawan</h2>
         <h5 class="title">
