@@ -1,0 +1,22 @@
+name: Build Vue
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+permissions:
+  contents: write # Permission for Action
+
+jobs:
+  build_vue:
+    runs-on: ubuntu-latest
+    name: Build Vue
+    steps:
+    - uses: actions/checkout@v2
+    - id: Build-Vue
+      uses: BitDEVil2K16/VuePagesAction@1.0.0
+      with:
+        username: 'ardiankurniawan8'
+        reponame: 'ardiankurniawan8.github.io'
+        token: ${{ secrets.GITHUB_TOKEN }}
