@@ -1,8 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DefaultLayout from '@/layouts/default.vue'
+
+import Right from '@/views/pages/right/Index.vue'
+import Left from '@/views/pages/left/Index.vue'
+</script>
 
 <template>
-  <component>
-    <h1 class="text-center">Welcome to Vue 3</h1>
-    <slot></slot>
-  </component>
+  <default-layout>
+    <template #left>
+      <left/>
+    </template>
+    <template #right>
+      <right/>
+    </template>
+  </default-layout>
 </template>
