@@ -1,7 +1,30 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useMainStore } from '@/stores/store';
+import Biodata from '@/views/pages/right/components/Biodata.vue';
+import Experience from '@/views/pages/right/components/Experience.vue';
+import Project from '@/views/pages/right/components/Project.vue';
+import { computed } from 'vue';
+
+const store = useMainStore()
+const currentComponent = computed(() => {
+  switch (store.getCurrentPage) {
+    case 'biodata':
+      return Biodata;
+      
+    case 'experience':
+      return Experience;
+    
+    case 'project':
+      return Project;
+      
+    default:
+      break;
+  }
+  return
+});
+
+</script>
 
 <template>
-  <div class="d-flex flex-column justify-content-center align-items-center h-100">
-    <h1>Coming soon!</h1>
-  </div>
+  <component :is="currentComponent"></component>
 </template>

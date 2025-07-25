@@ -1,4 +1,28 @@
 <script setup lang="ts">
+import { useMainStore } from '@/stores/store';
+import { gsap } from 'gsap';
+
+const store = useMainStore();
+
+function movePage(action: string) {
+  animate(action)
+}
+
+function animate(action: string) {
+  gsap.to(".right", {
+      opacity: 0,   // Menghilang
+      duration: 1,
+      ease: "power2.in",
+      onComplete: () => {
+        // Setelah selesai, jalankan animasi Fade In (invisible → visible)
+        gsap.fromTo(".right",
+          { opacity: 0 }, // Start: 50px di bawah & transparan
+          { opacity: 1, duration: 1, ease: "power2.out" }
+        );
+        store.movePage(action)
+      }
+    });
+}
 </script>
 
 <template>
@@ -24,10 +48,10 @@
 
     <div class="navigation">
       <div class="m-3">
-        <button class="btn btn-tertiary" type="button">
+        <button class="btn btn-tertiary" @click="movePage('next')" type="button">
           <IMdiKeyboardArrowRight></IMdiKeyboardArrowRight>
         </button>
-        <button class="btn btn-tertiary" type="button">
+        <button class="btn btn-tertiary" @click="movePage('previous')" type="button">
           <IMdiKeyboardArrowLeft></IMdiKeyboardArrowLeft>
         </button>
       </div>
@@ -36,7 +60,7 @@
 </template>
 
 <style scoped>
-@media (max-width: 1149px) {
+@media (max-width: 919px) {
   .desktop {
     display: none;
     max-width: 100vw;
@@ -47,7 +71,7 @@
   }
 }
 
-@media (min-width: 1150px) {
+@media (min-width: 920px) {
   .mobile {
     display: none;
   }
