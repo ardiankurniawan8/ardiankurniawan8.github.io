@@ -32,12 +32,18 @@ declare module 'vue' {
     ILogosVue: typeof import('~icons/logos/vue')['default']
     ILogosVuetify: typeof import('~icons/logos/vuetify')['default']
     ILogosVuetifyjs: typeof import('~icons/logos/vuetifyjs')['default']
+    IMdiAccountCircle: typeof import('~icons/mdi/account-circle')['default']
+    IMdiCloseThick: typeof import('~icons/mdi/close-thick')['default']
     IMdiGithub: typeof import('~icons/mdi/github')['default']
     IMdiKeyboardArrowLeft: typeof import('~icons/mdi/keyboard-arrow-left')['default']
     IMdiKeyboardArrowRight: typeof import('~icons/mdi/keyboard-arrow-right')['default']
     IMdiLinkedin: typeof import('~icons/mdi/linkedin')['default']
+    IMdiWhatsapp: typeof import('~icons/mdi/whatsapp')['default']
     IMitVue: typeof import('~icons/mi/t-vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+  }
+  export interface GlobalDirectives {
+    vBPopover: typeof import('bootstrap-vue-next/directives/BPopover')['vBPopover']
   }
 }

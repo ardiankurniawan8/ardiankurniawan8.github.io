@@ -1,32 +1,38 @@
 <script setup lang="ts">
 import { useMainStore } from '@/stores/store';
 import { gsap } from 'gsap';
+import { ref } from 'vue';
 
 const store = useMainStore();
+const showProfile = ref(false);
 
-function movePage(action: string) {
-  animate(action)
-}
-
-function animate(action: string) {
+const movePage = (action: string) => {
+  if (showProfile.value) {
+    showProfile.value = false;
+    return;
+  }
   gsap.to(".right", {
-      opacity: 0,   // Menghilang
-      duration: 1,
-      ease: "power2.in",
-      onComplete: () => {
-        // Setelah selesai, jalankan animasi Fade In (invisible → visible)
-        gsap.fromTo(".right",
-          { opacity: 0 }, // Start: 50px di bawah & transparan
-          { opacity: 1, duration: 1, ease: "power2.out" }
-        );
-        store.movePage(action)
-      }
-    });
-}
+    opacity: 0,
+    duration: 1,
+    ease: "power2.in",
+    onComplete: () => {
+      gsap.fromTo(".right",
+        { opacity: 0 },
+        { opacity: 1, duration: 1, ease: "power2.out" }
+      );
+      store.movePage(action);
+    }
+  });
+};
+
+const showLeft = () => {
+  showProfile.value = !showProfile.value;
+};
 </script>
 
 <template>
   <div class="layout">
+    <!-- Desktop View -->
     <div class="card border-0 desktop p-5">
       <div class="d-flex flex-row content rounded-5 shadow-lg">
         <div class="left rounded-end-0">
@@ -38,21 +44,36 @@ function animate(action: string) {
       </div>
     </div>
 
+    <!-- Mobile View -->
     <div class="layout-mobile mobile">
       <div class="d-flex flex-row content">
-        <div class="right">
+        <div v-show="showProfile">
+          <slot name="left"></slot>
+        </div>
+        <div v-if="!showProfile" class="right">
           <slot name="right"></slot>
         </div>
       </div>
     </div>
 
+    <!-- Navigation Buttons -->
     <div class="navigation">
-      <div class="m-3">
-        <button class="btn btn-tertiary" @click="movePage('next')" type="button">
-          <IMdiKeyboardArrowRight></IMdiKeyboardArrowRight>
+      <div class="m-3 bg-white">
+        <button class="btn" @click="movePage('next')" type="button">
+          <IMdiKeyboardArrowRight />
         </button>
-        <button class="btn btn-tertiary" @click="movePage('previous')" type="button">
-          <IMdiKeyboardArrowLeft></IMdiKeyboardArrowLeft>
+        <button class="btn" @click="movePage('previous')" type="button">
+          <IMdiKeyboardArrowLeft />
+        </button>
+      </div>
+    </div>
+
+    <!-- Profile Toggle (Mobile) -->
+    <div class="navigation-top">
+      <div class="m-3">
+        <button class="btn" @click="showLeft" type="button">
+          <IMdiAccountCircle v-if="!showProfile" style="height: 2rem;" color="white" />
+          <IMdiCloseThick v-else style="height: 2rem;" color="white" />
         </button>
       </div>
     </div>
@@ -75,5 +96,12 @@ function animate(action: string) {
   .mobile {
     display: none;
   }
+  .navigation-top {
+    display: none;
+  }
+}
+
+.left {
+  will-change: transform;
 }
 </style>

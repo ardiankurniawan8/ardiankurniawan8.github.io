@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 
 const textElement = ref<HTMLParagraphElement | null>(null)
 const isTypingComplete = ref(false)
+const isTechStackComplete = ref(false)
 const typingSpeed = 0.01 // seconds per character
 const cursorChar = '|'
 const cursorBlinkSpeed = 0.5 // seconds
@@ -70,66 +71,99 @@ function animateTechStack() {
         {
           opacity: 1, duration: 0.5, ease: "power2.out",
           onComplete: () => {
+            isTechStackComplete.value = true // Set tech stack complete state
+            const cols = document.querySelectorAll('.col')
+            gsap.fromTo(cols, 
+            { opacity: 0 },
+            {
+              opacity: 1,
+              duration: 0.7,
+              stagger: {
+                each: 0.2,
+                from: "start" // Try "start", "end", or "center"
+              },
+              ease: "power2.out"
+            })
           }
         },
       );
     }
   });
 }
+
 </script>
 
 <template>
   <div class="container-fluid p-5">
-    <h1 class="mb-0">Hi!</h1>
-    <h2>My name is Ardian.</h2>
+    <h1 class="mb-0 mt-3">Hi!</h1>
+    <h3>My name is Ardian.</h3>
     <p ref="textElement" class="typing-text">
       {{ text }}
     </p>
-    <div v-show="isTypingComplete" class="tech-stack">
-      <h2>Tech Stack</h2>
-      <div class="text-center mt-5">
+    <div v-show="isTypingComplete" class="tech-stack mt-3">
+      <h3>Tech Stack</h3>
+      <p class="subtext">Languages, frameworks, and tools I use to build scalable applications</p>
+      <div v-show="isTechStackComplete" class="text-center">
         <div class="row gap-1">
           <div class="col">
-            <ILogosVue class="icon-tech"></ILogosVue>
+            <button v-b-popover.focus.bottom="'Vue JS'" class="btn btn-outline-info">
+              <ILogosVue class="icon-tech"></ILogosVue>
+            </button>
           </div>
           <div class="col">
-            <ILogosNuxtIcon class="icon-tech"></ILogosNuxtIcon>
+            <button v-b-popover.focus.bottom="'Nuxt JS'" class="btn btn-outline-info">
+              <ILogosNuxtIcon class="icon-tech"></ILogosNuxtIcon>
+            </button>
           </div>
           <div class="col">
-            <ILogosJavascript class="icon-tech"></ILogosJavascript>
+            <button v-b-popover.focus.bottom="'Javascript'" class="btn btn-outline-info">
+              <ILogosJavascript class="icon-tech"></ILogosJavascript>
+            </button>
           </div>
           <div class="col">
-            <ILogosTypescriptIcon class="icon-tech"></ILogosTypescriptIcon>
+            <button v-b-popover.focus.bottom="'Typescript'" class="btn btn-outline-info">
+              <ILogosTypescriptIcon class="icon-tech"></ILogosTypescriptIcon>
+            </button>
           </div>
           <div class="col">
-            <ILogosTailwindcssIcon class="icon-tech"></ILogosTailwindcssIcon>
+            <button v-b-popover.focus.bottom="'Tailwind Css'" class="btn btn-outline-info">
+              <ILogosTailwindcssIcon class="icon-tech"></ILogosTailwindcssIcon>
+            </button>
           </div>
           <div class="col">
-            <ILogosVuetifyjs class="icon-tech"></ILogosVuetifyjs>
+            <button v-b-popover.focus.bottom="'Bootstrap'" class="btn btn-outline-info">
+              <ILogosBootstrap class="icon-tech"></ILogosBootstrap>
+            </button>
           </div>
           <div class="col">
-            <ILogosBootstrap class="icon-tech"></ILogosBootstrap>
+            <button v-b-popover.focus.bottom="'Java Springboot'" class="btn btn-outline-info">
+              <ILogosSpringIcon class="icon-tech"></ILogosSpringIcon>
+            </button>
           </div>
           <div class="col">
-            <ILogosSpringIcon class="icon-tech"></ILogosSpringIcon>
+            <button v-b-popover.focus.bottom="'GraphQL'" class="btn btn-outline-info">
+              <ILogosGraphql class="icon-tech"></ILogosGraphql>
+            </button>
           </div>
           <div class="col">
-            <ILogosGraphql class="icon-tech"></ILogosGraphql>
+            <button v-b-popover.focus.bottom="'Laravel'" class="btn btn-outline-info">
+              <ILogosLaravel class="icon-tech"></ILogosLaravel>
+            </button>
           </div>
           <div class="col">
-            <ILogosLaravel class="icon-tech"></ILogosLaravel>
+            <button v-b-popover.focus.bottom="'Postgresql'" class="btn btn-outline-info">
+              <ILogosPostgresql class="icon-tech"></ILogosPostgresql>
+            </button>
           </div>
           <div class="col">
-            <ILogosPostgresql class="icon-tech"></ILogosPostgresql>
+            <button v-b-popover.focus.bottom="'Mysql'" class="btn btn-outline-info">
+              <ILogosMysql class="icon-tech"></ILogosMysql>
+            </button>
           </div>
           <div class="col">
-            <ILogosMysql class="icon-tech"></ILogosMysql>
-          </div>
-          <div class="col">
-            <ILogosGitIcon class="icon-tech"></ILogosGitIcon>
-          </div>
-          <div class="col">
-            <ILogosGitlabIcon class="icon-tech"></ILogosGitlabIcon>
+            <button v-b-popover.focus.bottom="'Git'" class="btn btn-outline-info">
+              <ILogosGitIcon class="icon-tech"></ILogosGitIcon>
+            </button>
           </div>
         </div>
       </div>
@@ -141,7 +175,7 @@ function animateTechStack() {
 .typing-text {
   font-family: inherit;
   white-space: pre-wrap;
-  min-height: 200px;
+  min-height: 15vh;
   line-height: 1.6;
 }
 
@@ -156,12 +190,16 @@ h1 {
 }
 
 p {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .icon-tech {
   width: 5rem;
   height: 5rem;
   margin: 0.5rem;
+}
+
+.btn-outline-info {
+  border: 0;
 }
 </style>
