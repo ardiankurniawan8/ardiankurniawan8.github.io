@@ -37,6 +37,7 @@ declare module 'vue' {
     IMdiGithub: typeof import('~icons/mdi/github')['default']
     IMdiKeyboardArrowLeft: typeof import('~icons/mdi/keyboard-arrow-left')['default']
     IMdiKeyboardArrowRight: typeof import('~icons/mdi/keyboard-arrow-right')['default']
+    IMdiKeyboardArrowUp: typeof import('~icons/mdi/keyboard-arrow-up')['default']
     IMdiLinkedin: typeof import('~icons/mdi/linkedin')['default']
     IMdiWhatsapp: typeof import('~icons/mdi/whatsapp')['default']
     IMitVue: typeof import('~icons/mi/t-vue')['default']

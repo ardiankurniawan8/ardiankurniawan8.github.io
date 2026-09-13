@@ -58,25 +58,24 @@ const showLeft = () => {
 
     <!-- Navigation Buttons -->
     <div class="navigation">
-      <div class="m-3 bg-white">
-        <button class="btn" @click="movePage('next')" type="button">
-          <IMdiKeyboardArrowRight />
-        </button>
-        <button class="btn" @click="movePage('previous')" type="button">
-          <IMdiKeyboardArrowLeft />
-        </button>
+      <div>
+        <div class="m-3 navigation-top">
+          <button class="btn my-1" @click="showLeft" type="button">
+            <IMdiAccountCircle v-if="!showProfile" color="white" />
+            <IMdiCloseThick v-else color="white" />
+          </button>
+        </div>
+        <div class="m-3 navigation-bottom">
+          <button class="btn" @click="movePage('next')" type="button">
+            <IMdiKeyboardArrowRight />
+          </button>
+          <button class="btn" @click="movePage('previous')" type="button">
+            <IMdiKeyboardArrowLeft />
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- Profile Toggle (Mobile) -->
-    <div class="navigation-top">
-      <div class="m-3">
-        <button class="btn" @click="showLeft" type="button">
-          <IMdiAccountCircle v-if="!showProfile" style="height: 2rem;" color="white" />
-          <IMdiCloseThick v-else style="height: 2rem;" color="white" />
-        </button>
-      </div>
-    </div>
   </div>
 </template>
 

@@ -26,5 +26,13 @@ const currentComponent = computed(() => {
 </script>
 
 <template>
-  <component :is="currentComponent"></component>
+  <component class="scroll-y" :is="currentComponent"></component>
 </template>
+
+<style scoped>
+  .scroll-y {
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+</style>
