@@ -6,7 +6,7 @@ export const useMainStore = defineStore('main', {
     pageList: [
       'biodata',
       'experience',
-      'project'
+      // 'project'
     ],
     currentPage: 'biodata'
   }),

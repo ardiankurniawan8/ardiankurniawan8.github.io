@@ -5,7 +5,7 @@ import { gsap } from 'gsap'
 const textElement = ref<HTMLParagraphElement | null>(null)
 const isTypingComplete = ref(false)
 const isTechStackComplete = ref(false)
-const typingSpeed = 0.01 // seconds per character
+const typingSpeed = 0.005 // seconds per character
 const cursorChar = '|'
 const cursorBlinkSpeed = 0.5 // seconds
 
@@ -97,12 +97,12 @@ function animateTechStack() {
   <div class="container-fluid p-5">
     <h1 class="mb-0 mt-3">Hi!</h1>
     <h3>My name is Ardian.</h3>
-    <p ref="textElement" class="typing-text">
+    <p ref="textElement" class="typing-text text-secondary">
       {{ text }}
     </p>
     <div v-show="isTypingComplete" class="tech-stack mt-3">
       <h3>Tech Stack</h3>
-      <p class="subtext">Languages, frameworks, and tools I use to build scalable applications</p>
+      <p class="subtext text-secondary">Languages, frameworks, and tools I use to build scalable applications</p>
       <div v-show="isTechStackComplete" class="text-center">
         <div class="row gap-1">
           <div class="col">
@@ -183,14 +183,6 @@ function animateTechStack() {
   opacity: 1;
   margin-left: 2px;
   font-size: 5rem;
-}
-
-h1 {
-  font-size: 7vh;
-}
-
-p {
-  font-weight: 400;
 }
 
 .icon-tech {
